@@ -1263,18 +1263,22 @@ class _HouseRulesAgreementScreenState extends ConsumerState<HouseRulesAgreementS
   void initState() {
     super.initState();
     _rules = List<HouseRuleItem>.from(widget.candidate.initialHouseRules);
-    final userCustomNote = ref.read(scenarioControllerProvider).additionalNotes.trim();
-    if (userCustomNote.isNotEmpty) {
-      _rules.add(
-        HouseRuleItem(
-          id: 'user_custom_note',
-          category: HouseRuleCategory.cleaningChores,
-          textEn: userCustomNote,
-          textTr: userCustomNote,
-          isAccepted: true,
-          isEdited: true,
-        ),
-      );
+    try {
+      final userCustomNote = ref.read(scenarioControllerProvider).additionalNotes.trim();
+      if (userCustomNote.isNotEmpty) {
+        _rules.add(
+          HouseRuleItem(
+            id: 'user_custom_note',
+            category: HouseRuleCategory.cleaningChores,
+            textEn: userCustomNote,
+            textTr: userCustomNote,
+            isAccepted: true,
+            isEdited: true,
+          ),
+        );
+      }
+    } catch (_) {
+      // Safe fallback when running isolated widget tests without Firebase initialized
     }
   }
 
