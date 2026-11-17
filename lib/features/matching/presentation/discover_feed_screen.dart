@@ -5,6 +5,8 @@ import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_dimensions.dart';
 import '../../../core/notifications/push_notification_service.dart';
 import '../../../core/providers/locale_provider.dart';
+import '../../ai_engine/domain/ai_matching_engine.dart';
+import '../../ai_engine/presentation/ai_model_card_screen.dart';
 import '../../auth/application/auth_controller.dart';
 import '../../scenarios/application/scenario_controller.dart';
 
@@ -748,6 +750,17 @@ class _DiscoverFeedScreenState extends ConsumerState<DiscoverFeedScreen> {
               child: const Icon(Icons.notifications_outlined),
             ),
             onPressed: () => _showNotificationsModal(context, ref),
+          ),
+          IconButton(
+            tooltip: isTr ? 'AI Model Card & Doğrulama Lab' : 'AI Model Card & Validation Lab',
+            icon: const Icon(Icons.science_outlined),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const AiModelCardAndLabScreen(),
+                ),
+              );
+            },
           ),
           IconButton(
             tooltip: isTr ? 'KVKK & Veri Gizliliği' : 'KVKK & Data Privacy',
@@ -1546,6 +1559,66 @@ class _HouseRulesAgreementScreenState extends ConsumerState<HouseRulesAgreementS
 
             const SizedBox(height: AppDimensions.lg),
 
+            // Madde 3: Gemini Tool-Calling Agent Trace inside House Rules Screen
+            Builder(
+              builder: (_) {
+                final trace = GeminiToolCallingAgent.runAgentWorkflow(
+                  candidateId: candidate.id,
+                  candidateName: candidate.name,
+                  district: candidate.district,
+                  budget: candidate.budget,
+                  verifiedFilters: candidate.getVerifiedFilters(isTr),
+                  userSleep: const SleepWindow(bedtimeHour: 23, wakeHour: 7),
+                  candidateSleep: const SleepWindow(bedtimeHour: 23, wakeHour: 7),
+                );
+                return Card(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  child: ExpansionTile(
+                    leading: const Icon(Icons.smart_toy_outlined, color: AppColors.primaryTeal),
+                    title: Text(
+                      isTr
+                          ? 'Gemini Tool-Calling Agent Kaydı (2 Araç Çağrıldı)'
+                          : 'Gemini Tool-Calling Agent Trace (2 Tools Called)',
+                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: const Text(
+                      'getCandidateProfile() • compareSleepSchedules()',
+                      style: TextStyle(fontSize: 11.5, fontFamily: 'monospace'),
+                    ),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ...trace.toolCalls.map(
+                              (c) => Padding(
+                                padding: const EdgeInsets.only(bottom: 6.0),
+                                child: Text(
+                                  '• ${c.toolName}(${c.arguments}) → ${c.result}',
+                                  style: const TextStyle(fontSize: 11.5, fontFamily: 'monospace'),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              isTr ? trace.summaryTr : trace.summaryEn,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.primaryTeal,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -1859,6 +1932,17 @@ class _ChatRoomDemoScreenState extends ConsumerState<ChatRoomDemoScreen> {
           ],
         ),
         actions: [
+          IconButton(
+            tooltip: isTr ? '2. ve 6. Hafta Deneyim Doğrulama Anketi' : 'Post-Occupancy Validation Survey',
+            icon: const Icon(Icons.fact_check_outlined, color: AppColors.primaryTeal),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const AiModelCardAndLabScreen(),
+                ),
+              );
+            },
+          ),
           IconButton(
             tooltip: isTr ? 'Onaylanan Ev Kuralları' : 'Agreed House Rules',
             icon: const Icon(Icons.assignment_turned_in_outlined, color: AppColors.primaryTeal),

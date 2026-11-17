@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/ai_engine/presentation/ai_model_card_screen.dart';
 import '../../features/auth/application/auth_controller.dart';
 import '../../features/auth/application/auth_state.dart';
 import '../../features/auth/presentation/forgot_password_screen.dart';
@@ -95,6 +96,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: '/discover',
         name: 'discover',
         builder: (context, state) => const DiscoverFeedScreen(),
+      ),
+      GoRoute(
+        path: '/ai-lab',
+        name: 'ai-lab',
+        builder: (context, state) => const AiModelCardAndLabScreen(),
       ),
       GoRoute(
         path: '/house-rules',
