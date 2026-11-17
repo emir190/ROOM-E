@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:roomie/core/constants/turkey_locations.dart';
 import 'package:roomie/core/errors/result.dart';
+import 'package:roomie/core/widgets/turkish_char_bar.dart';
 import 'package:roomie/features/onboarding/application/onboarding_controller.dart';
 import 'package:roomie/features/onboarding/domain/entities/onboarding_data.dart';
 import 'package:roomie/features/onboarding/domain/repositories/onboarding_repository.dart';
@@ -122,6 +124,21 @@ void main() {
       expect(data.perPersonRent, 10000);
       expect(data.budgetMin, 10000);
       expect(data.budgetMax, 10000);
+    });
+
+    test('TurkishTextUtils supports Turkish character insertion and search normalization', () {
+      final controller = TextEditingController(text: 'Bura');
+      controller.selection = const TextSelection.collapsed(offset: 2);
+      TurkishTextUtils.insertChar(controller, 'ğ');
+      expect(controller.text, 'Buğra');
+
+      expect(TurkishTextUtils.toLowerTurkish('İSTANBUL'), 'istanbul');
+      expect(TurkishTextUtils.toLowerTurkish('IĞDIR'), 'ığdır');
+      expect(
+        TurkishTextUtils.normalizeForSearch('Kadıköy'),
+        TurkishTextUtils.normalizeForSearch('kadikoy'),
+      );
+      controller.dispose();
     });
   });
 }

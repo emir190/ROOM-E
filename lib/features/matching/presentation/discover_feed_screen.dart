@@ -5,6 +5,7 @@ import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_dimensions.dart';
 import '../../../core/notifications/push_notification_service.dart';
 import '../../../core/providers/locale_provider.dart';
+import '../../../core/widgets/turkish_char_bar.dart';
 import '../../ai_engine/domain/ai_matching_engine.dart';
 import '../../ai_engine/presentation/ai_model_card_screen.dart';
 import '../../auth/application/auth_controller.dart';
@@ -1358,6 +1359,7 @@ class _HouseRulesAgreementScreenState extends ConsumerState<HouseRulesAgreementS
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                 ),
               ),
+              TurkishCharBar(controller: textController),
               const SizedBox(height: 16),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
@@ -1462,6 +1464,7 @@ class _HouseRulesAgreementScreenState extends ConsumerState<HouseRulesAgreementS
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                     ),
                   ),
+                  TurkishCharBar(controller: textController),
                   const SizedBox(height: 16),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
@@ -2056,22 +2059,28 @@ class _ChatRoomDemoScreenState extends ConsumerState<ChatRoomDemoScreen> {
               ],
             ),
             child: SafeArea(
-              child: Row(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _msgController,
-                      decoration: InputDecoration(
-                        hintText: isTr ? 'Mesaj yazın...' : 'Type a message...',
-                        border: InputBorder.none,
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  TurkishCharBar(controller: _msgController),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: _msgController,
+                          decoration: InputDecoration(
+                            hintText: isTr ? 'Mesaj yazın...' : 'Type a message...',
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          ),
+                          onSubmitted: (_) => _sendMessage(),
+                        ),
                       ),
-                      onSubmitted: (_) => _sendMessage(),
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.send_rounded, color: AppColors.primaryTeal),
-                    onPressed: () => _sendMessage(),
+                      IconButton(
+                        icon: const Icon(Icons.send_rounded, color: AppColors.primaryTeal),
+                        onPressed: () => _sendMessage(),
+                      ),
+                    ],
                   ),
                 ],
               ),

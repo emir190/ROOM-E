@@ -34,6 +34,7 @@ class AppTheme {
       textTheme: baseTextTheme.apply(
         bodyColor: AppColors.textPrimaryLight,
         displayColor: AppColors.textPrimaryLight,
+        fontFamilyFallback: const ['Roboto', 'Segoe UI', 'Arial', 'sans-serif'],
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.backgroundLight,
@@ -136,6 +137,7 @@ class AppTheme {
       textTheme: baseTextTheme.apply(
         bodyColor: AppColors.textPrimaryDark,
         displayColor: AppColors.textPrimaryDark,
+        fontFamilyFallback: const ['Roboto', 'Segoe UI', 'Arial', 'sans-serif'],
       ),
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.backgroundDark,

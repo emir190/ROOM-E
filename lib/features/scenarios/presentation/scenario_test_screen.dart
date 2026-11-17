@@ -5,6 +5,7 @@ import '../../../../core/constants/app_dimensions.dart';
 import '../../../../core/l10n/app_localizations.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/loading_indicator.dart';
+import '../../../../core/widgets/turkish_char_bar.dart';
 import '../application/scenario_controller.dart';
 import 'widgets/scenario_card_widget.dart';
 
@@ -88,6 +89,10 @@ class _ScenarioTestScreenState extends ConsumerState<ScenarioTestScreen> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
+              ),
+              TurkishCharBar(
+                controller: _additionalNotesController,
+                onChanged: controller.updateAdditionalNotes,
               ),
               const SizedBox(height: 16),
               AppButton(
@@ -284,23 +289,32 @@ class _ScenarioTestScreenState extends ConsumerState<ScenarioTestScreen> {
             if (isLastScenario)
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-                child: TextField(
-                  controller: _additionalNotesController,
-                  maxLines: 2,
-                  onChanged: controller.updateAdditionalNotes,
-                  decoration: InputDecoration(
-                    labelText: isTr
-                        ? 'Eklemek İstediğiniz Kurallar veya Dikkat Edilmesi Gerekenler'
-                        : 'Additional Rules or Important Points to Note',
-                    hintText: isTr
-                        ? 'Örn: Gece 23:30 sonrası sessizlik, mutfak düzeni vb. özel notunuzu yazın...'
-                        : 'e.g., Write any custom rules or points to watch out for...',
-                    prefixIcon: const Icon(Icons.edit_note_rounded),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    TextField(
+                      controller: _additionalNotesController,
+                      maxLines: 2,
+                      onChanged: controller.updateAdditionalNotes,
+                      decoration: InputDecoration(
+                        labelText: isTr
+                            ? 'Eklemek İstediğiniz Kurallar veya Dikkat Edilmesi Gerekenler'
+                            : 'Additional Rules or Important Points to Note',
+                        hintText: isTr
+                            ? 'Örn: Gece 23:30 sonrası sessizlik, mutfak düzeni vb. özel notunuzu yazın...'
+                            : 'e.g., Write any custom rules or points to watch out for...',
+                        prefixIcon: const Icon(Icons.edit_note_rounded),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      ),
                     ),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                  ),
+                    TurkishCharBar(
+                      controller: _additionalNotesController,
+                      onChanged: controller.updateAdditionalNotes,
+                    ),
+                  ],
                 ),
               ),
 

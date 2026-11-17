@@ -10,6 +10,7 @@ import '../../../core/constants/turkey_locations.dart';
 import '../../../core/l10n/app_localizations.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/app_text_field.dart';
+import '../../../core/widgets/turkish_char_bar.dart';
 import '../application/onboarding_controller.dart';
 import '../domain/entities/onboarding_data.dart';
 
@@ -448,6 +449,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     required ValueChanged<String> onSelected,
   }) {
     String searchQuery = '';
+    final searchController = TextEditingController();
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -457,13 +459,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       builder: (ctx) {
         return StatefulBuilder(
           builder: (modalCtx, setModalState) {
-            final filtered = items
-                .where((item) => item.toLowerCase().contains(searchQuery.toLowerCase()))
-                .toList();
+            final normalizedQuery = TurkishTextUtils.normalizeForSearch(searchQuery);
+            final lowerQuery = TurkishTextUtils.toLowerTurkish(searchQuery);
+            final filtered = items.where((item) {
+              if (searchQuery.trim().isEmpty) return true;
+              return TurkishTextUtils.toLowerTurkish(item).contains(lowerQuery) ||
+                  TurkishTextUtils.normalizeForSearch(item).contains(normalizedQuery);
+            }).toList();
             return DraggableScrollableSheet(
               expand: false,
-              initialChildSize: 0.7,
-              maxChildSize: 0.9,
+              initialChildSize: 0.72,
+              maxChildSize: 0.92,
               minChildSize: 0.45,
               builder: (_, scrollController) {
                 return Padding(
@@ -489,6 +495,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                       ),
                       const SizedBox(height: 8),
                       TextField(
+                        controller: searchController,
                         decoration: InputDecoration(
                           hintText: 'Alfabetik listede ara...',
                           prefixIcon: const Icon(Icons.search),
@@ -497,6 +504,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                           ),
                           contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                         ),
+                        onChanged: (val) {
+                          setModalState(() => searchQuery = val);
+                        },
+                      ),
+                      TurkishCharBar(
+                        controller: searchController,
                         onChanged: (val) {
                           setModalState(() => searchQuery = val);
                         },
