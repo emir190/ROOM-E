@@ -1,0 +1,4 @@
+Kerem Babaoglu - BACK END LEAD - 2411011038
+Emir Buğra Koçak - QA & KVKK LEAD- 2411011070
+Orkun Kuzuoglu - AI & PROMPT LEAD - 2411011089
+İsmail Uğur - FRONT END LEAD - 2411011043 

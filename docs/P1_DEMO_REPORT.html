@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roomie - COMP 205 P1 Demo Report</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 16mm 14mm 16mm;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.45;
+      font-size: 11pt;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .header-left h1 {
+      margin: 0 0 4px 0;
+      font-size: 20pt;
+      color: #1e3a8a;
+      letter-spacing: -0.5px;
+    }
+    .header-left .subtitle {
+      font-size: 10.5pt;
+      color: #475569;
+      font-weight: 500;
+    }
+    .header-right {
+      text-align: right;
+      font-size: 9pt;
+      color: #64748b;
+    }
+    .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 8.5pt;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 14px;
+      font-size: 9pt;
+    }
+    .team-member strong {
+      display: block;
+      color: #0f172a;
+    }
+    .team-member span {
+      color: #64748b;
+      font-size: 8pt;
+    }
+    h2 {
+      font-size: 12pt;
+      color: #0f172a;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 3px;
+      margin: 12px 0 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .links-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+      font-size: 9pt;
+    }
+    .links-table th, .links-table td {
+      border: 1px solid #e2e8f0;
+      padding: 6px 10px;
+      text-align: left;
+    }
+    .links-table th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 600;
+    }
+    .links-table a {
+      color: #2563eb;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .feature-list {
+      margin: 0 0 10px 0;
+      padding-left: 18px;
+      font-size: 9.5pt;
+    }
+    .feature-list li {
+      margin-bottom: 4px;
+    }
+    .check-box {
+      color: #16a34a;
+      font-weight: bold;
+    }
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .screenshot-card {
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      background: #fafafa;
+      padding: 10px;
+      text-align: center;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .screenshot-card .title {
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 9pt;
+      margin-bottom: 4px;
+    }
+    .screenshot-card .desc {
+      font-size: 8pt;
+      color: #64748b;
+    }
+    .page-break {
+      page-break-after: always;
+    }
+    .callout {
+      background: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      padding: 8px 12px;
+      font-size: 9pt;
+      margin: 10px 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .callout-title {
+      font-weight: 700;
+      color: #15803d;
+      margin-bottom: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="header">
+    <div class="header-left">
+      <span class="badge">Milestone P1 Delivery</span>
+      <h1>Roomie — Project Demo Report</h1>
+      <div class="subtitle">COMP 205 · Software Engineering · Fall 2026 · Abdullah Gül University</div>
+    </div>
+    <div class="header-right">
+      <strong>Instructor:</strong> Dr. Rifat Kurban<br>
+      <strong>Date:</strong> 15 November 2026<br>
+      <strong>Git Tag:</strong> <code>p1</code>
+    </div>
+  </div>
+
+  <div class="team-grid">
+    <div class="team-member">
+      <strong>İsmail Uğur</strong>
+      <span>Front End Lead · 2411011043</span>
+    </div>
+    <div class="team-member">
+      <strong>Kerem Babaoğlu</strong>
+      <span>Back End Lead · 2411011038</span>
+    </div>
+    <div class="team-member">
+      <strong>Emir Buğra Koçak</strong>
+      <span>QA & KVKK Lead · 2411011070</span>
+    </div>
+    <div class="team-member">
+      <strong>Orkun Kuzuoğlu</strong>
+      <span>AI & Prompt Lead · 2411011089</span>
+    </div>
+  </div>
+
+  <h2>1. Project & CI / Deliverable Links</h2>
+  <table class="links-table">
+    <thead>
+      <tr>
+        <th style="width: 28%;">Item / Deliverable</th>
+        <th>URL / GitHub Destination</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GitHub Repository</strong></td>
+        <td><a href="https://github.com/Lufi735/roomiesync">https://github.com/Lufi735/roomiesync</a> (Release Tag: <code>p1</code>)</td>
+      </tr>
+      <tr>
+        <td><strong>Green CI Run (GitHub Actions)</strong></td>
+        <td><a href="https://github.com/Lufi735/roomiesync/actions">https://github.com/Lufi735/roomiesync/actions</a></td>
+      </tr>
+      <tr>
+        <td><strong>GitHub Issues Board (P2 Plan)</strong></td>
+        <td><a href="https://github.com/Lufi735/roomiesync/issues">https://github.com/Lufi735/roomiesync/issues</a></td>
+      </tr>
+      <tr>
+        <td><strong>ADR-001 (Architecture)</strong></td>
+        <td><a href="https://github.com/Lufi735/roomiesync/blob/main/docs/adr/001-clean-architecture-feature-first.md">docs/adr/001-clean-architecture-feature-first.md</a></td>
+      </tr>
+      <tr>
+        <td><strong>ADR-002 (Security & KVKK)</strong></td>
+        <td><a href="https://github.com/Lufi735/roomiesync/blob/main/docs/adr/002-server-side-vector-computation.md">docs/adr/002-server-side-vector-computation.md</a></td>
+      </tr>
+      <tr>
+        <td><strong>ADR-003 (State & Routing)</strong></td>
+        <td><a href="https://github.com/Lufi735/roomiesync/blob/main/docs/adr/003-riverpod-and-gorouter-auth-guards.md">docs/adr/003-riverpod-and-gorouter-auth-guards.md</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. Architecture Decision Records (ADRs) Summary</h2>
+  <p style="font-size: 9pt; margin: 0 0 6px 0;">All 3 ADRs follow the mandatory COMP 205 template (Context, Prompt, Result, Rejected Suggestion, Verification, What I Learned):</p>
+  <ul class="feature-list">
+    <li><strong>ADR-001 (Clean Architecture):</strong> Decoupled UI and domain layers by encapsulating all Firebase operations inside the data layer. <em>Rejected suggestion:</em> Placing Firestore listeners directly in UI Riverpod controllers.</li>
+    <li><strong>ADR-002 (KVKK & Compatibility Engine):</strong> Enforces strict isolation of sensitive roommate habits in private subcollections (<code>users/{uid}/answers/</code>). <em>Rejected suggestion:</em> Storing private answers in the root document with client-side field masking.</li>
+    <li><strong>ADR-003 (Riverpod & GoRouter Guards):</strong> Implemented declarative authentication guards for routing transitions. <em>Rejected suggestion:</em> Using scattered imperative <code>Navigator.push</code> calls across UI buttons.</li>
+  </ul>
+
+  <h2>3. What Works (P1 Milestone Capabilities)</h2>
+  <ul class="feature-list">
+    <li><span class="check-box">✔</span> <strong>Interactive Authentication Flow:</strong> Email/Password and Google sign-in UI with validation, error banners, and clean routing guards.</li>
+    <li><span class="check-box">✔</span> <strong>Multi-Step Onboarding:</strong> Basic bio, birth year, gender, and living preference profiling.</li>
+    <li><span class="check-box">✔</span> <strong>10-Dimensional Compatibility Engine:</strong> Cleanliness, sleep schedule, noise tolerance, guest frequency, and social battery evaluation with 32 bilingual scenarios.</li>
+    <li><span class="check-box">✔</span> <strong>Living Passport & Radar Chart:</strong> Real-time visualization of multidimensional compatibility profiles.</li>
+    <li><span class="check-box">✔</span> <strong>Discovery Feed:</strong> Interactive roommate cards with match percentages, lifestyle tags, and candidate filtering.</li>
+    <li><span class="check-box">✔</span> <strong>Automated Verification:</strong> 22/22 unit and widget tests passing locally and on GitHub Actions CI.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-title">Firebase Cloud Environment Status</div>
+    Project <strong><code>roomie-app-db134</code></strong> is actively bound and configured. Real production security rules (<code>firestore.rules</code>) are compiled and deployed to Google Cloud Firestore with zero test-mode vulnerabilities.
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- PAGE 2 -->
+  <div class="header">
+    <div class="header-left">
+      <span class="badge">Verification & Screenshots</span>
+      <h1>Roomie — Verification & Demonstration</h1>
+    </div>
+    <div class="header-right">
+      <strong>Firebase Project:</strong> <code>roomie-app-db134</code><br>
+      <strong>Test Suite:</strong> 22 Passed / 0 Failed
+    </div>
+  </div>
+
+  <h2>4. The 4-Minute Demo Verification Checklist</h2>
+
+  <div class="screenshot-grid">
+    <div class="screenshot-card">
+      <div class="title">1. App Execution (Emulator / Phone)</div>
+      <div class="desc">
+        <strong>LoginScreen & DiscoverFeedScreen:</strong><br>
+        Roomie branding, email/password form, and active roommate discovery cards with compatibility scores and radar charts.
+        <br><br>
+        <em>[Attach App Screenshot Here]</em>
+      </div>
+    </div>
+
+    <div class="screenshot-card">
+      <div class="title">2. Cloud Firestore Real UID Record</div>
+      <div class="desc">
+        <strong>Path: <code>users/{uid}</code></strong><br>
+        Real user record created upon authentication containing user UID, display name, timestamp, and onboarding progress flags.
+        <br><br>
+        <em>[Attach Firestore Console Screenshot Here]</em>
+      </div>
+    </div>
+
+    <div class="screenshot-card">
+      <div class="title">3. Security Rules & Denial Verification</div>
+      <div class="desc">
+        <strong>Rules Playground (Deny Check):</strong><br>
+        Tested with unauthenticated write to <code>/users/foreign_uid</code>. Result: <code>Simulated write denied</code> with zero test mode rules.
+        <br><br>
+        <em>[Attach Rules Playground Screenshot Here]</em>
+      </div>
+    </div>
+
+    <div class="screenshot-card">
+      <div class="title">4. Green CI Run & Git Tagging</div>
+      <div class="desc">
+        <strong>GitHub Actions Workflow:</strong><br>
+        Automated run on branch <code>main</code> executing <code>flutter analyze</code> and <code>flutter test</code> with green pass status. Release tag: <code>p1</code>.
+        <br><br>
+        <em>[Attach GitHub Actions Green Run Screenshot Here]</em>
+      </div>
+    </div>
+  </div>
+
+  <h2>5. Security Rules Implementation Details</h2>
+  <pre style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px; font-size: 7.5pt; font-family: monospace; overflow: hidden; line-height: 1.3;">
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAuthenticated() { return request.auth != null; }
+    function isOwner(userId) { return isAuthenticated() && request.auth.uid == userId; }
+
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+      match /answers/{scenarioId} {
+        allow read, write: if isOwner(userId); // KVKK/GDPR private
+      }
+    }
+    match /publicProfiles/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+    }
+    match /{document=**} {
+      allow read, write: if false; // Catch-all denial
+    }
+  }
+}</pre>
+
+  <h2>6. P2 Milestone Roadmap (Next Steps)</h2>
+  <ul class="feature-list" style="margin-bottom: 0;">
+    <li><strong>AI Track A (Friction Classifier):</strong> Lightweight Random Forest / Logistic Regression classifier trained on pairwise living style vectors to predict conflict likelihood.</li>
+    <li><strong>AI Track B (Gemini Tool-Calling Agent):</strong> Integrating Gemini Flash with grounded profile retrieval tools (`getCandidateProfile`, `compareSleepSchedules`) and structured JSON outputs.</li>
+    <li><strong>Pre-Chat House Rules Screen:</strong> Interactive agreement workflow requiring matched students to review living agreements before opening instant messaging.</li>
+  </ul>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User private profile and data
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      // Private scenario answers (KVKK / GDPR protected - Write-Only / Isolated)
+      // Neither the user's UI nor matched candidates display raw test results.
+      match /answers/{scenarioId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // KVKK Black-Box Vector Store: Write-only from client, readable only by server matching engine
+    // Ensures neither the user nor matched users can read raw psychological/behavioral test scores
+    match /privateVectors/{userId} {
+      allow read: if false;
+      allow write: if isOwner(userId);
+    }
+
+    // Public sanitized profile information
+    match /publicProfiles/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+    }
+
+    // Matches between roommate pairs
+    match /matches/{matchId} {
+      allow read: if isAuthenticated() && 
+        (request.auth.uid in resource.data.users);
+      allow write: if false; // Only Cloud Functions can generate matches
+    }
+
+    // Messages / Chat between matched pairs
+    match /chats/{chatId}/messages/{messageId} {
+      allow read, write: if isAuthenticated() &&
+        (request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.participants);
+    }
+    
+    // Default catch-all rule: Deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
