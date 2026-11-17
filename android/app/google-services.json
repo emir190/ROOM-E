@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "214743968157",
-    "project_id": "roomie-app-db134",
-    "storage_bucket": "roomie-app-db134.firebasestorage.app"
+    "project_number": "846082766130",
+    "project_id": "roomie-app-7e00f",
+    "storage_bucket": "roomie-app-7e00f.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:214743968157:android:77387989d0160cebe16774",
+        "mobilesdk_app_id": "1:846082766130:android:844ea748f51311328d532b",
         "android_client_info": {
           "package_name": "com.uyumlu.app.uyumlu"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAc-B_p1SxRWFPsI-D718B8NyLplFvQQ7E"
+          "current_key": "AIzaSyDZiBCCpUgwxgnO0N-IoQ8Z354emeVb7aI"
         }
       ],
       "services": {
